@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>강동 아동미술 시장조사 · 고덕강일2지구 vs 올림픽파크포레온</title>
+<style>
+:root{
+  --bg:#f7f5f0; --card:#fff; --ink:#1f2430; --sub:#5d6475; --line:#e6e2d8;
+  --gd:#1f7356; --gd-soft:#e3f3ec;   /* 고덕강일 */
+  --fr:#5b5bd6; --fr-soft:#ebebfb;   /* 포레온 */
+  --warn:#d9534f; --warn-soft:#fdecea; --est:#f4c542; --est-soft:#fff6d6;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕","Noto Sans KR",system-ui,sans-serif;
+  line-height:1.6;font-size:16px;word-break:keep-all;overflow-wrap:break-word}
+a{color:inherit}
+header.hero{background:linear-gradient(135deg,#1f2430 0%,#34385a 60%,#5b5bd6 100%);color:#fff;padding:56px 20px 40px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.hero .wrap{padding:0}
+.hero .kicker{font-size:14px;opacity:.8;letter-spacing:.04em}
+.hero h1{font-size:clamp(26px,5vw,40px);line-height:1.25;margin:8px 0 12px}
+.hero p{margin:0;opacity:.9;max-width:640px}
+.hero .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;background:rgba(255,255,255,.14)}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot.gd{background:#5fd3a8}.dot.fr{background:#a9a9ff}
+nav.toc{position:sticky;top:0;z-index:10;background:rgba(247,245,240,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;scrollbar-width:none}
+nav.toc .wrap::-webkit-scrollbar{display:none}
+nav.toc a{flex:none;text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--sub)}
+nav.toc a:hover{color:var(--ink);border-color:var(--ink)}
+a:focus-visible{outline:3px solid var(--fr);outline-offset:2px;color:var(--ink)}
+section{padding:40px 0 8px}
+.sec-no{font-size:13px;font-weight:700;color:var(--fr);letter-spacing:.06em}
+h2{font-size:clamp(22px,3.6vw,28px);margin:4px 0 6px;line-height:1.3}
+.lead{color:var(--sub);margin:0 0 20px}
+h3{font-size:18px;margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.gd-card{border-top:6px solid var(--gd)}
+.fr-card{border-top:6px solid var(--fr)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;vertical-align:middle;margin-left:4px;white-space:nowrap}
+.tag.est{background:var(--est-soft);color:#8a6a00;border:1px solid var(--est)}
+.tag.seller{background:#eef0f3;color:#5d6475;border:1px solid #cfd3da}
+.tag.gd{background:var(--gd-soft);color:var(--gd)}
+.tag.fr{background:var(--fr-soft);color:var(--fr)}
+.big{font-size:clamp(26px,5vw,34px);font-weight:800;line-height:1.2}
+.muted{color:var(--sub);font-size:14px}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:4px 0}
+.verdict{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.verdict .card{position:relative;overflow:hidden}
+.verdict .icon{font-size:34px;line-height:1}
+.alert{border-radius:12px;padding:14px 16px;margin:12px 0;font-size:15px}
+.alert.warn{background:var(--warn-soft);border-left:5px solid var(--warn)}
+.alert.info{background:#eef3fb;border-left:5px solid #4a7bd0}
+.alert.note{background:var(--est-soft);border-left:5px solid var(--est)}
+/* compare table */
+.tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line);background:#fff}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{background:#faf9f6;font-size:14px;color:var(--sub)}
+thead th.gd{color:var(--gd)} thead th.fr{color:var(--fr)}
+tbody th{font-weight:700;white-space:nowrap;color:var(--sub);font-size:14px}
+tr:last-child td,tr:last-child th{border-bottom:none}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:14px}
+.bar-row .label{display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px}
+.bar-track{background:#f0eee8;border-radius:8px;height:22px;overflow:hidden}
+.bar{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:12px;font-weight:700}
+.bar.gd{background:var(--gd)} .bar.fr{background:var(--fr)}
+.pair{display:grid;grid-template-columns:72px 1fr;gap:8px 12px;align-items:center}
+.pair .age{font-weight:700;font-size:14px;grid-row:span 2}
+.pair .bar-track{height:18px}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--sub);margin-bottom:12px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.sw.gd{background:var(--gd)} .sw.fr{background:var(--fr)}
+/* stat tiles */
+.stat{background:#faf9f6;border-radius:12px;padding:14px}
+.stat .k{font-size:13px;color:var(--sub)}
+.stat .v{font-size:22px;font-weight:800;line-height:1.3}
+/* timeline */
+.timeline{position:relative;margin:0;padding:0;list-style:none}
+.timeline li{position:relative;padding:0 0 22px 32px}
+.timeline li::before{content:"";position:absolute;left:9px;top:6px;bottom:-6px;width:2px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline li::after{content:"";position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--fr)}
+.timeline .when{font-weight:800}
+.timeline .two{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:6px}
+.timeline .two div{background:#faf9f6;border-radius:10px;padding:10px 12px;font-size:14px}
+/* steps */
+.steps{counter-reset:s;display:grid;gap:12px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.step .n{counter-increment:s;width:44px;height:44px;border-radius:12px;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:18px}
+.step .n::before{content:counter(s)}
+.checks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.checks li{padding-left:28px;position:relative}
+.checks li::before{content:"✔";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:6px;background:var(--gd-soft);color:var(--gd);font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:800}
+svg text{font-family:inherit}
+footer{margin-top:40px;padding:28px 0 48px;border-top:1px solid var(--line);color:var(--sub);font-size:13px}
+footer p{margin:6px 0}
+@media (max-width:520px){
+  body{font-size:15px}
+  .card{padding:16px}
+  header.hero{padding:40px 16px 28px}
+  .wrap{padding:0 16px}
+  nav.toc .wrap{padding:10px 16px}
+}
+@media print{nav.toc{display:none}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">강동구 아동미술 시장조사 · 2026년 11월</div>
+    <h1>고덕강일2지구 vs<br>둔촌 올림픽파크포레온</h1>
+    <p>미술학원 부원장으로 일할 곳과 직접 차릴 곳을 찾기 위해 두 지역의 아이 수, 학부모 성향, 학원 경쟁, 상가 월세, 주거를 비교했습니다.</p>
+    <div class="chips">
+      <span class="chip"><span class="dot gd"></span>고덕강일2지구 (강일동)</span>
+      <span class="chip"><span class="dot fr"></span>올림픽파크포레온 (둔촌1동)</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="목차">
+  <div class="wrap">
+    <a href="#summary">한눈에 결론</a>
+    <a href="#compare">두 지역 비교</a>
+    <a href="#parents">학부모·아이 나이</a>
+    <a href="#demand">수요 예측</a>
+    <a href="#job">부원장 취업</a>
+    <a href="#startup">창업</a>
+    <a href="#housing">주거</a>
+    <a href="#missing">빠뜨리기 쉬운 것</a>
+    <a href="#roadmap">로드맵</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 1 -->
+<section id="summary">
+  <div class="sec-no">01</div>
+  <h2>한눈에 결론</h2>
+  <p class="lead">일하며 배우기는 포레온, 직접 차리기는 고덕강일이 맞습니다.</p>
+  <div class="verdict">
+    <div class="card fr-card">
+      <div class="icon">🧑‍🏫</div>
+      <h3>부원장 취업 → 올림픽파크포레온</h3>
+      <ul class="clean">
+        <li>강사 여러 명을 둔 프리미엄 '학원'이 몰려 있어 부원장 자리가 생깁니다.</li>
+        <li>소비력 높은 학부모를 상대로 상담·관리 경험을 쌓기 좋습니다.</li>
+      </ul>
+    </div>
+    <div class="card gd-card">
+      <div class="icon">🎨</div>
+      <h3>직접 창업 → 고덕강일2지구</h3>
+      <ul class="clean">
+        <li>상가 월세가 포레온의 절반 이하입니다.</li>
+        <li>교육청 추계로 강빛초 학생이 2029년까지 늘어납니다.</li>
+        <li>3단지 1,305세대가 <b>2027년 5월</b> 입주 → 그 전에 열어야 선점합니다.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid g3">
+    <div class="stat"><div class="k">잠재 원생 · 강일 <span class="tag est">추정</span></div><div class="v" style="color:var(--gd)">약 500~600명</div></div>
+    <div class="stat"><div class="k">잠재 원생 · 포레온 <span class="tag est">추정</span></div><div class="v" style="color:var(--fr)">약 600~750명</div></div>
+    <div class="stat"><div class="k">미술학원 수</div><div class="v">각 17곳 안팎</div></div>
+  </div>
+  <div class="alert warn"><b>오피스텔은 거주용으로만.</b> 오피스텔에서는 교습소·공부방을 등록할 수 없습니다.</div>
+</section>
+
+<!-- 2 -->
+<section id="compare">
+  <div class="sec-no">02</div>
+  <h2>두 지역 비교</h2>
+  <p class="lead">포레온은 크고 비싸고 이미 찼고, 고덕강일은 작고 싸고 아직 커지는 중입니다.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>세대수</h3>
+      <svg viewBox="0 0 320 120" width="100%" role="img" aria-label="세대수 비교: 고덕강일2지구 6,568세대, 포레온 12,032세대">
+        <rect x="0" y="14" width="168" height="34" rx="8" fill="#1f7356"/>
+        <text x="176" y="37" font-size="15" font-weight="700" fill="#1f2430">6,568</text>
+        <text x="0" y="10" font-size="12" fill="#5d6475">고덕강일2지구 (6개 단지)</text>
+        <rect x="0" y="72" width="308" height="34" rx="8" fill="#5b5bd6"/>
+        <text x="240" y="95" font-size="15" font-weight="700" fill="#fff">12,032</text>
+        <text x="0" y="68" font-size="12" fill="#5d6475">올림픽파크포레온</text>
+      </svg>
+      <p class="muted">고덕강일 3단지 1,305세대는 2027년 5월 입주 예정. 포레온은 2024년 11월~2025년 3월 입주.</p>
+    </div>
+    <div class="card">
+      <h3>상가 2층 10평 월세</h3>
+      <svg viewBox="0 0 320 120" width="100%" role="img" aria-label="월세 비교: 고덕강일 88만~190만 원, 포레온 스테이션5 약 300만 원">
+        <text x="0" y="10" font-size="12" fill="#5d6475">고덕강일 단지 상가</text>
+        <rect x="0" y="14" width="300" height="34" rx="8" fill="#f0eee8"/>
+        <rect x="88" y="14" width="102" height="34" rx="8" fill="#1f7356"/>
+        <text x="196" y="37" font-size="14" font-weight="700" fill="#1f2430">88만~190만</text>
+        <text x="0" y="68" font-size="12" fill="#5d6475">포레온 스테이션5 (평당 약 30만)</text>
+        <rect x="0" y="72" width="300" height="34" rx="8" fill="#5b5bd6"/>
+        <text x="200" y="95" font-size="14" font-weight="700" fill="#fff">약 300만</text>
+      </svg>
+      <p class="muted">포레온 1층 6평은 250만~400만 원. 단위: 원/월.</p>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th></th><th class="gd">고덕강일2지구</th><th class="fr">올림픽파크포레온</th></tr></thead>
+      <tbody>
+        <tr><th>초등학생</th><td>강빛초 2026년 1,134명 → 2029년 1,776명(정점) <span class="tag">교육청 추계</span></td><td>둔촌초 1,020명, 위례초 1,084명, 한산초 515명</td></tr>
+        <tr><th>동네 소득</th><td>국민임대·장기전세 비중 높음. 분양 단지만 구매력 큼</td><td>84㎡ 시세 약 27.5억(2025년 5월). 매우 높음</td></tr>
+        <tr><th>미술학원</th><td>강일동 17곳</td><td>둔촌동 17곳 · '포레온' 브랜드 학원 6곳 이상</td></tr>
+        <tr><th>수강료</th><td>주2회 12만~16만, 많이 듣는 반 최대 25만</td><td>주3회 18만~19만, 주4회 25만</td></tr>
+        <tr><th>상가 사정</th><td>단지 상가에 피아노·태권도·영어·수학 학원이 섞여 있음</td><td>1층 입점률 37%(2025년 11월). 2~3층은 학원·병원으로 80% 이상 참</td></tr>
+        <tr><th>변수</th><td>강율초 2029년 3월 개교 → 학생 분산. 9호선 연장 2028년 목표</td><td>신설 중학교 2029년 개교 예정</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card gd-card">
+      <h3>고덕강일 더 보기</h3>
+      <ul class="clean">
+        <li>강빛초 과밀 → 모듈러 교실 26학급(2026년 10학급, 2027년 전부 사용).</li>
+        <li>같은 지구라도 차이가 큽니다. 5단지 민간분양 809세대에 학생 244명, 6·7단지 임대는 1,000~1,200세대에 131~172명(2024년 교육청).</li>
+        <li>3단지는 토지임대부, 전용 49·59㎡가 3억 원대 → 유치부 수요가 클 것 <span class="tag est">추정</span>. 교육청 예상 학생 330명.</li>
+      </ul>
+    </div>
+    <div class="card fr-card">
+      <h3>포레온 더 보기</h3>
+      <ul class="clean">
+        <li>"입점하자마자 원생이 꽉 찼다"(2026년 1월 기사, 2층 학원 원장).</li>
+        <li>영렘브란트, 그림아트 스튜디오, 에꼴드에땅, 아트앤하트, 비끄아트, 필미에르필아트 등 프랜차이즈가 이미 자리 잡음.</li>
+        <li>좋은 자리는 거의 없고, 있어도 월세가 높습니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="parents">
+  <div class="sec-no">03</div>
+  <h2>학부모 성향 · 아이 나이</h2>
+  <p class="lead">포레온은 맞벌이 고소득 3040·초등 고학년, 고덕강일은 신혼·임대 가정·유치부와 저학년이 중심입니다.</p>
+
+  <div class="grid g2">
+    <div class="card gd-card">
+      <h3>고덕강일 (강일동)</h3>
+      <ul class="clean">
+        <li>국민임대는 소득 기준(도시근로자 평균의 70% 이하)이 있고 신혼부부·만 6세 이하 자녀 가정 우선 공급.</li>
+        <li>아이 키우기 좋은 평지 신축 단지. 옆 하남 미사 학원가로 빠져나갈 수 있음.</li>
+        <li>소비력은 낮은 편~중간, 단지마다 다름. <b>수강료에 민감</b>.</li>
+      </ul>
+    </div>
+    <div class="card fr-card">
+      <h3>포레온 (둔촌1동)</h3>
+      <ul class="clean">
+        <li>약 8,000세대가 새로 입주. 30·40대 비중 31.6% → 46.9%.</li>
+        <li>후기에 "맞벌이 초등 남매 가정", "단지에 오만 학원 셔틀".</li>
+        <li>"학구열 높은 동네"와 "아직 학군지는 아니다"가 섞임. 39㎡ 이하 소형도 약 2,000세대.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>소득이 수요를 가릅니다 · 유아 사교육 참여율</h3>
+    <div class="bars">
+      <div class="bar-row"><div class="label"><span>월 소득 800만 원 이상</span><b>62.4%</b></div><div class="bar-track"><div class="bar fr" style="width:62.4%"></div></div></div>
+      <div class="bar-row"><div class="label"><span>월 소득 300만 원 미만</span><b>29.5%</b></div><div class="bar-track"><div class="bar gd" style="width:29.5%"></div></div></div>
+    </div>
+    <p class="muted" style="margin-top:10px">참여 유아 1인당 월 사교육비도 32.2만 원 vs 4.8만 원(2024 시험조사).</p>
+  </div>
+
+  <div class="card">
+    <h3>아이 나이 분포 (행정안전부 주민등록, 2026년 9월)</h3>
+    <div class="legend"><span><i class="sw gd"></i>강일동</span><span><i class="sw fr"></i>둔촌1동</span></div>
+    <div class="pair">
+      <div class="age">0~4세</div>
+      <div class="bar-track"><div class="bar gd" style="width:54.6%">1,111</div></div>
+      <div class="bar-track"><div class="bar fr" style="width:83.2%">1,694</div></div>
+    </div>
+    <div class="pair" style="margin-top:12px">
+      <div class="age">5~9세</div>
+      <div class="bar-track"><div class="bar gd" style="width:82.3%">1,676</div></div>
+      <div class="bar-track"><div class="bar fr" style="width:88.1%">1,794</div></div>
+    </div>
+    <div class="pair" style="margin-top:12px">
+      <div class="age">10~14세</div>
+      <div class="bar-track"><div class="bar gd" style="width:81.5%">1,659</div></div>
+      <div class="bar-track"><div class="bar fr" style="width:100%">2,036</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="stat"><div class="k">0~14세 비율</div><div class="v"><span style="color:var(--gd)">13.0%</span> · <span style="color:var(--fr)">16.7%</span></div></div>
+      <div class="stat"><div class="k">65세 이상 비율</div><div class="v"><span style="color:var(--gd)">21.4%</span> · <span style="color:var(--fr)">15.6%</span></div></div>
+      <div class="stat"><div class="k">최근 16개월 인구</div><div class="v"><span style="color:var(--gd)">-0.4%</span> · <span style="color:var(--fr)">+5.0%</span></div></div>
+    </div>
+    <ul class="clean" style="margin-top:14px">
+      <li><b>강일동</b>: 0~4세가 5~9세보다 34% 적음 → 3단지 효과를 빼면 유치부·저학년 수요는 줄어드는 흐름. (리버파크 1지구 포함 통계)</li>
+      <li><b>둔촌1동</b>: 0~4세와 5~9세가 비슷해 다음 세대가 이어짐. 지금은 10~14세가 가장 많음.</li>
+      <li><b>강동구 전체</b>: 2025년 출생아 +19.97%로 서울 1위, 혼인 +34%.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4 -->
+<section id="demand">
+  <div class="sec-no">04</div>
+  <h2>미술학원 수요 예측 <span class="tag est">추정</span></h2>
+  <p class="lead">강일은 2027~2029년에 반짝 늘고, 포레온은 오래 안정적으로 갈 가능성이 큽니다.</p>
+
+  <div class="grid g2">
+    <div class="card gd-card">
+      <h3>강일 (고덕강일 1·2지구)</h3>
+      <div class="big" style="color:var(--gd)">약 500~600명</div>
+      <p class="muted">월 시장 약 6,000만~9,000만 원 · 수강료 12만~15만 원 · 학원당 평균 약 30~35명</p>
+      <ul class="clean"><li>4~6세 약 890명 → 약 160명</li><li>초등 약 2,200명 → 약 370명</li></ul>
+    </div>
+    <div class="card fr-card">
+      <h3>포레온 (둔촌1동)</h3>
+      <div class="big" style="color:var(--fr)">약 600~750명</div>
+      <p class="muted">월 시장 약 1억~1.2억 원 · 평균 수강료 16만 4천 원 · 학원당 평균 약 35~45명</p>
+      <ul class="clean"><li>4~6세 약 1,060명 → 약 250명</li><li>초등 약 2,100명 → 약 470명</li></ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>학년이 오를수록 예체능을 그만둡니다 (초등 예체능 사교육 참여율, 2024)</h3>
+    <svg viewBox="0 0 400 190" width="100%" role="img" aria-label="초등 예체능 참여율: 1학년 79.3%, 3학년 78.7%, 5학년 65.5%, 6학년 53.4%">
+      <line x1="30" y1="160" x2="390" y2="160" stroke="#e6e2d8"/>
+      <g font-size="13" text-anchor="middle">
+        <rect x="45" y="33" width="56" height="127" rx="6" fill="#5b5bd6"/><text x="73" y="26" font-weight="700">79.3%</text><text x="73" y="180" fill="#5d6475">1학년</text>
+        <rect x="135" y="34" width="56" height="126" rx="6" fill="#5b5bd6"/><text x="163" y="27" font-weight="700">78.7%</text><text x="163" y="180" fill="#5d6475">3학년</text>
+        <rect x="225" y="55" width="56" height="105" rx="6" fill="#8e8ee6"/><text x="253" y="48" font-weight="700">65.5%</text><text x="253" y="180" fill="#5d6475">5학년</text>
+        <rect x="315" y="75" width="56" height="85" rx="6" fill="#d9534f"/><text x="343" y="68" font-weight="700">53.4%</text><text x="343" y="180" fill="#5d6475">6학년</text>
+      </g>
+    </svg>
+    <p class="muted">유아 과목별 참여율에서 미술은 16.2%. 계산에 쓴 미술학원 이용률 가정: 4~6세 20%, 초등 1~3학년 25%, 4~6학년 12% (포레온 +20%, 강일 -10% 조정) <span class="tag est">추정</span></p>
+  </div>
+
+  <div class="card">
+    <h3>강빛초 학생 수 (교육청 추계)</h3>
+    <svg viewBox="0 0 400 200" width="100%" role="img" aria-label="강빛초 학생 수: 2026년 1,134명, 2027년 1,608명, 2029년 1,776명, 2033년 1,504명">
+      <line x1="30" y1="160" x2="390" y2="160" stroke="#e6e2d8"/>
+      <polyline fill="none" stroke="#1f7356" stroke-width="4" stroke-linejoin="round" points="50,140 140,74 230,50 360,88"/>
+      <g fill="#fff" stroke="#1f7356" stroke-width="4">
+        <circle cx="50" cy="140" r="7"/><circle cx="140" cy="74" r="7"/><circle cx="230" cy="50" r="7"/><circle cx="360" cy="88" r="7"/>
+      </g>
+      <g font-size="14" text-anchor="middle" font-weight="700">
+        <text x="50" y="125">1,134</text><text x="140" y="60">1,608</text><text x="230" y="34">1,776 정점</text><text x="360" y="74">1,504</text>
+      </g>
+      <g font-size="13" text-anchor="middle" fill="#5d6475">
+        <text x="50" y="182">2026</text><text x="140" y="182">2027</text><text x="230" y="182">2029</text><text x="360" y="182">2033</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="card">
+    <h3>앞으로의 흐름 <span class="tag est">추정</span></h3>
+    <ul class="timeline">
+      <li><div class="when">2027~2029년</div>
+        <div class="two"><div><span class="tag gd">강일</span> 강빛초 증가 + 3단지 입주 → 수요 <b>+20~30%</b></div><div><span class="tag fr">포레온</span> 인구·출생아 증가 → 비슷하거나 소폭 증가</div></div></li>
+      <li><div class="when">2029년</div>
+        <div class="two"><div><span class="tag gd">강일</span> 강율초 개교로 학생 분산, 상가 위치에 따라 유불리. 신혼부부 전용 336세대 공급 예정</div><div><span class="tag fr">포레온</span> 단지 안 중학교 개교 → 중등 가정이 덜 빠져나감</div></div></li>
+      <li><div class="when">2031년 이후</div>
+        <div class="two"><div><span class="tag gd">강일</span> 강빛초 감소, 0~4세도 적어 수요 감소</div><div><span class="tag fr">포레온</span> 소형 평형 가정 이사 가능, 새 신혼 가정 유입으로 유아 수요 지속 가능</div></div></li>
+    </ul>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>수업 설계</th><th class="gd">강일</th><th class="fr">포레온</th></tr></thead>
+      <tbody>
+        <tr><th>핵심 대상</th><td>유치부(4~7세)·초등 1~3학년</td><td>초등 전 학년, 고학년 드로잉·예중 준비</td></tr>
+        <tr><th>잘 팔릴 상품</th><td>주1~2회반 12만~15만 원, 형제 할인</td><td>주3~5회 '돌봄형' 반 18만~27만 원, 늦은 시간반</td></tr>
+        <tr><th>차별화</th><td>도보 거리, 가격, 아이 정서 케어</td><td>전공자 강사진, 포트폴리오, 전시회, 상담 품질</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 5 -->
+<section id="job">
+  <div class="sec-no">05</div>
+  <h2>부원장으로 취업할 경우</h2>
+  <p class="lead">부원장 자리는 강사가 여러 명인 '학원'에만 있습니다.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>어디에 자리가 있나</h3>
+      <ul class="clean">
+        <li><b>교습소에는 부원장 자리가 없습니다.</b> 원장 1명이 가르치고 보조 인력은 1명까지만 둘 수 있습니다.</li>
+        <li><span class="tag fr">포레온</span> 강사 여러 명을 둔 학원이 많음</li>
+        <li><span class="tag gd">고덕강일</span> 1인 교습소 위주</li>
+        <li>송파의 한 매물은 원장이 수업하지 않고 부원장과 전임 강사 2명이 운영 → 부원장에게 가장 큰 기회인 구조</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>계약할 때 확인할 것</h3>
+      <ul class="checks">
+        <li>4대보험 근로계약인지, 3.3% 프리랜서 계약인지</li>
+        <li>퇴직 후 근처 개원을 금지하는 조항이 있는지 (창업 계획이 있으면 특히 중요)</li>
+        <li>성범죄·아동학대 경력 조회는 필수</li>
+      </ul>
+      <h3 style="margin-top:16px">공고 볼 곳</h3>
+      <p style="margin:0">잡티처 · 사람인 · 당근알바 · 아트섬 · 케이머그<br><span class="muted">포레온 브랜드 학원에는 포트폴리오를 들고 직접 문의하는 방법도 있습니다.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section id="startup">
+  <div class="sec-no">06</div>
+  <h2>직접 차릴 경우</h2>
+  <p class="lead">고덕강일 2층 10평이면 원생 약 37명부터 원장 월 300만 원이 가능합니다 <span class="tag est">추정</span>.</p>
+
+  <div class="card">
+    <h3>강동구 미술교습소 매물 <span class="tag seller">매도자 제시</span></h3>
+    <div class="tbl-wrap" style="border:none">
+      <table>
+        <thead><tr><th>위치</th><th>층/평수</th><th>보증금/월세</th><th>원생</th><th>월매출/순이익</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>강일동 단지 상가</td><td>2층 10평</td><td class="num">1,500만/88만</td><td class="num">60명</td><td class="num">820만/630만</td><td>주변 아파트 추가 입주 예정</td></tr>
+          <tr><td>고덕동 약 5,000세대 단독 상가</td><td>2층 10평</td><td class="num">3,000만/190만</td><td class="num">27명</td><td class="num">600만/300만</td><td>권리금 300만, 50~70분 16만 원</td></tr>
+          <tr><td>고덕동 단지 상가</td><td>1층 10평</td><td class="num">3,000만/185만</td><td class="num">110명</td><td class="num">1,300만/900만</td><td>도보 초등생 3,000명 이상</td></tr>
+          <tr><td>강동 단지 상가</td><td>15평</td><td class="num">3,000만/190만</td><td class="num">100명</td><td>확인 못 함</td><td>차량 없음</td></tr>
+          <tr><td>둔촌동 초등학교 앞</td><td>1층 8평</td><td class="num">1,000만/85만</td><td class="num">50명</td><td class="num">320만/200만</td><td>개원 4년차</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">문민아카데미, 2026년 9~11월. 단위: 원. 매도자가 밝힌 수치라 검증 필요.</p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h3>개인 교습소</h3><div class="big">1,300만~2,000만</div><p class="muted">인테리어 1,000만~1,500만 + 재료·집기 300만~500만 (보증금 제외) <span class="tag est">추정</span>. 인수 시 권리금 300만~수천만.</p></div>
+    <div class="card"><h3>아트앤하트 가맹</h3><div class="big">3,510만</div><p class="muted">가맹비 880만 · 교육비 220만 · 33평 인테리어 1,650만 · 기타 760만 (정보공개서)</p></div>
+    <div class="card"><h3>홈아뜰리에 (자택)</h3><div class="big">약 100만</div><p class="muted">집기비만으로 시작. 아파트·빌라에 실제 거주하며 개인과외교습자 신고 필요.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>손익분기 원생 수 <span class="tag est">추정</span></h3>
+    <div class="legend"><span><i class="sw gd"></i>고덕강일 2층 10평 (고정비 약 170만, 수강료 15만)</span><span><i class="sw fr"></i>포레온 스테이션5 2층 10평 (고정비 약 370만, 수강료 18만)</span></div>
+    <div class="pair">
+      <div class="age">원장<br>300만</div>
+      <div class="bar-track"><div class="bar gd" style="width:74%">37명</div></div>
+      <div class="bar-track"><div class="bar fr" style="width:88%">44명</div></div>
+    </div>
+    <div class="pair" style="margin-top:12px">
+      <div class="age">원장<br>400만</div>
+      <div class="bar-track"><div class="bar gd" style="width:90%">45명</div></div>
+      <div class="bar-track"><div class="bar fr" style="width:100%">50명</div></div>
+    </div>
+    <p class="muted" style="margin-top:12px">재료비 15%, 기타 고정비 월 30만 원 가정. 10평 교습소는 동시 9명, 평일 90분 하루 4타임·주2회 원생 기준 최대 약 90명.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section id="housing">
+  <div class="sec-no">07</div>
+  <h2>주거 · 강동 오피스텔</h2>
+  <p class="lead">강일 원룸 전세가 가장 싸지만, 계약 전에 깡통전세인지 꼭 보세요.</p>
+  <div class="alert warn"><b>오피스텔은 거주용으로만.</b> 교습소·공부방 등록은 안 됩니다.</div>
+  <div class="grid g2">
+    <div class="card gd-card">
+      <h3>강동 강일</h3>
+      <div class="big">전세 1억~1억 2,000만</div>
+      <p class="muted">강일포디움(2016년 준공) 22~23㎡. 매매가는 확인하지 못했습니다.</p>
+      <p style="margin:6px 0 0">원룸 월세 <b>50만~70만 원</b> 수준 · 출퇴근 거리로 적당</p>
+    </div>
+    <div class="card fr-card">
+      <h3>강동 고덕</h3>
+      <div class="big">전세 1억 8,000만~</div>
+      <p class="muted">고덕센트럴푸르지오(2020년 준공). 원룸 1억 8,000만~1억 8,700만, 1.5룸~2룸 3억 4,500만~4억.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>전세 계약 전 체크리스트</h3>
+    <ul class="checks">
+      <li><b>매매가 확인</b>: 같은 건물·같은 면적의 최근 매매 실거래가. 전세가 매매가의 70~80%를 넘으면 피하기</li>
+      <li><b>전세보증보험</b>: HUG·HF 가입 가능 여부를 계약 전에 확인</li>
+      <li><b>등기부등본</b>: 근저당·압류, 집주인과 등기상 소유자가 같은지</li>
+      <li><b>입주 당일</b>: 전입신고 + 확정일자</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 -->
+<section id="missing">
+  <div class="sec-no">08</div>
+  <h2>빠뜨리기 쉬운 것</h2>
+  <div class="grid g2">
+    <div class="card"><h3>💰 수강료 상한</h3><p style="margin:0">강동송파교육지원청 신고 교습비는 1분당 약 <b>158~165원</b> <span class="tag est">추정</span>. 18만 원을 받으려면 한 달 약 1,100분(주3회 90분)이 필요합니다. 2026년 10월 12일 새 기준은 단가를 확인하지 못했으니 교육지원청에 확인하세요.</p></div>
+    <div class="card"><h3>📋 의무 사항</h3><ul class="clean"><li>성범죄·아동학대 경력 조회</li><li>배상책임보험 의무 가입</li><li>교습소 신고 시 학력 등 자격 요건</li></ul></div>
+    <div class="card"><h3>🚐 차량 운행</h3><p style="margin:0">어린이 통학버스 신고와 동승 보호자가 필요해 비용이 큽니다. <b>걸어서 오는 원생 중심</b>으로 운영하세요.</p></div>
+    <div class="card"><h3>🏢 SH 단지 상가</h3><p style="margin:0">고덕강일 3단지 등 SH 상가 임대 공고를 확인하세요. 민간보다 임대료가 낮을 가능성 <span class="tag est">추정</span>. 임대 단지 안 공부방 가능 여부는 확인하지 못했습니다.</p></div>
+    <div class="card"><h3>🏫 학교 안 무료 예술</h3><p style="margin:0">2027년부터 모든 초등학교 방과후 '1인 1예술 또는 1스포츠' 지원 계획. 늘봄·방과후 참여율 36.7%. 저가 주1회반이 먼저 영향받습니다.</p></div>
+    <div class="card"><h3>📈 그래도 예체능 지출은 증가</h3><p style="margin:0">2025년 예체능 1인당 비용 +4.1%. 서울 학생 1인당 사교육비 월 66.3만 원(전국 최고). 질 좋은 수업은 버틸 여지가 있습니다.</p></div>
+    <div class="card"><h3>🚇 9호선 연장</h3><p style="margin:0">2028년 개통 목표지만 2025년 12월 공정률 34.2%. 개통 효과는 계산에 넣지 마세요.</p></div>
+    <div class="card"><h3>➡️ 미사로 빠지는 수요</h3><p style="margin:0">강일 리버스트는 하남 미사와 붙어 있습니다. 미사 미술학원 수강료·위치도 같이 보세요.</p></div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section id="roadmap">
+  <div class="sec-no">09</div>
+  <h2>추천 로드맵</h2>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="n"></div><div><h3>지금~2027년 초 · 부원장으로 상권 익히기</h3><p class="muted" style="margin:0">고덕강일이나 포레온 학원에서 수강료·원생 연령·학부모 반응을 익힙니다. 거주는 강일 원룸 오피스텔.</p></div></div>
+      <div class="step"><div class="n"></div><div><h3>2027년 봄 · 고덕강일 교습소 개원</h3><p class="muted" style="margin:0">3단지(5월 입주) 상가나 강빛초 통학구역 분양 단지 상가 2층 10평. 유치부·초등 저학년 위주로 시작.</p></div></div>
+      <div class="step"><div class="n"></div><div><h3>포레온 창업은 후순위</h3><p class="muted" style="margin:0">프리미엄 브랜드가 자리 잡았고 월세가 높습니다. 권리금 낮은 기존 교습소 인수만 검토.</p></div></div>
+      <div class="step"><div class="n"></div><div><h3>2029년 이후 대비</h3><p class="muted" style="margin:0">강율초 개교·장기 감소에 대비해 고학년 드로잉·수행평가반을 미리 만들어 둡니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>기준 시점</b>: 2026년 11월 조사</p>
+    <p><b>출처 유형</b>: 국토부 실거래가, 행정안전부 주민등록 인구통계, 서울시교육청 학생 추계, 통계청 사교육비 조사, 상가·교습소 매물 사이트, 언론 보도</p>
+    <p><span class="tag est">추정</span> 직접 계산하거나 가정한 값 · <span class="tag seller">매도자 제시</span> 매물 광고에 나온 값(검증 필요)</p>
+    <p>투자·계약 판단 전에 원자료와 현장을 직접 확인하세요.</p>
+  </div>
+</footer>
+</body>
+</html>
